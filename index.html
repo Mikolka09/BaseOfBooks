@@ -10,8 +10,52 @@
     <script src="index.js"></script>
 </head>
 
-<body>
+<body class="body_hide">
+    <header>
+        <a class="header_logo" href=" index.html">LIBRARY</a>
+        <nav class="header_nav">
+            <a class="header_nav_link" id="nav_1" href="#">Books</a>
+            <a class="header_nav_link" id="nav_2" href="#">Visitors</a>
+            <a class="header_nav_link" id="nav_3" href="#">Cards</a>
+            <a class="header_nav_link" id="nav_4" href="#">Statistics</a>
+        </nav>
+    </header>
+    <div class="container_box">
+        <div class="container_text">All Books:</div>
+        <div>
+            <button type="button" class="container_btn" id="btn" >New Book</button>
+        </div>
+    </div>
+<div class = "input_box">
+    <div class="input_sort">
+        <div>
+            <label>Sort by:</label>
+            <select name="sort" id="sort">
+                <option value="val1" selected>val1</option>
+                <option value="val2">val2</option>
+                <option value="val3">val3</option>
+                <option value="val4">val4</option>
+                <option value="val5">val5</option>
+                <option value="val6">val6</option>
+            </select>
+        </div>
+        <div>
+            <button type="button" class="input_btn_sort" id="btn_sort">Sort</button>
+        </div>
+    </div>
+    <div class="input_search">
+        <div>
+            <label>Search:</label>
+            <input type="text" id="txt_search" class="input_txt_search">
+        </div>
+        <div>
+            <button type="button" class="input_btn_search" id="btn_search">Search</button>
+        </div>
+    </div>
+</div>
+<div class="table_books">
 
+</div>
 </body>
 
 </html>

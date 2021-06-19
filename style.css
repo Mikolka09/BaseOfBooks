@@ -1,4 +1,145 @@
-*{
+.body_hide {
+    font-family: LLucida Sans Regular, Geneva, Verdana, sans-serif;
+    font-size: 15pt;
+    line-height: 1.1;
+    background-color: beige;
+}
+
+*,
+:after,
+:before {
     box-sizing: border-box;
 }
 
+/* Header */
+.header_logo {
+    position: relative;
+    font-size: 56pt;
+    font-weight: 700;
+    top: 20px;
+    left: 70px;
+    color: seagreen;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s linear;
+}
+
+.header_logo:hover {
+    color: rgb(74, 190, 124);
+}
+
+.header_nav {
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    width: 2600px;
+    height: 80px;
+    font-size: 30pt;
+    top: 60px;
+    background-color: darkslategray;
+    border: 3px solid gray;
+}
+
+.header_nav_link {
+    text-decoration: none;
+    color: white;
+    border: 3px solid gray;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 60px;
+    padding-right: 60px;
+    transition: all 0.2s linear;
+}
+
+.header_nav_link:hover {
+    color: aquamarine;
+}
+
+#nav_1 {
+    margin-left: 70px;
+    margin-right: -16px;
+    color: aquamarine;
+}
+
+#nav_2,
+#nav_3 {
+    margin-right: -17px;
+}
+
+#nav_4 {
+    border: 0;
+}
+
+/* Container */
+.container_box {
+    position: relative;
+    display: flex;
+    width: 94%;
+    height: 150px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    top: 80px;
+    border-bottom: 3px solid gray;
+}
+
+.container_text {
+    text-transform: uppercase;
+    font-size: 28pt;
+    color: seagreen;
+    font-weight: 700;
+}
+
+.container_btn {
+    width: 300px;
+    height: 50px;
+    font-size: 22pt;
+    font-weight: 500;
+}
+
+/* Input */
+.input_box {
+    position: relative;
+    display: flex;
+    width: 94%;
+    height: 150px;
+    margin: 0 auto;
+    top: 80px;
+    align-items: center;
+    font-size: 28pt;
+    justify-content: space-between;
+}
+
+.input_sort,
+.input_search {
+    display: flex;
+    align-items: center;
+}
+
+.input_sort>div>select, 
+.input_search>div>input{
+    width: 280px;
+    height: 45px;
+    font-size: 20pt;
+    background:white;
+}
+
+.input_btn_sort,
+.input_btn_search {
+    width: 130px;
+    height: 45px;
+    font-size: 22pt;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+/* Table */
+.table_books{
+    position: relative;
+    width: 94%;
+    height:650px;
+    border: 3px solid gray;
+    top: 80px;
+    margin: 0 auto;
+    overflow: auto;
+}
