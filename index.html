@@ -23,37 +23,73 @@
     <div class="container_box">
         <div class="container_text">All Books:</div>
         <div>
-            <button type="button" class="container_btn" id="btn" >New Book</button>
+            <button type="button" class="container_btn" id="btn_new">New Book</button>
         </div>
     </div>
-<div class = "input_box">
-    <div class="input_sort">
-        <div>
-            <label>Sort by:</label>
-            <select name="sort" id="sort">
-                <option value="id" selected>ID</option>
-                <option value="name">NAME</option>
-                <option value="author">AUTHOR</option>
-                <option value="year">YEAR</option>
-                <option value="publisher">PUBLISHER</option>
-                <option value="pages">PAGES</option>
-                <option value="count">COUNT</option>
-            </select>
+    <div class="input_box">
+        <div class="input_sort">
+            <div>
+                <label>Sort by:</label>
+                <select name="sort" id="sort">
+                    <option value="id" selected>ID</option>
+                    <option value="name">NAME</option>
+                    <option value="author">AUTHOR</option>
+                    <option value="year">YEAR</option>
+                    <option value="publisher">PUBLISHER</option>
+                    <option value="pages">PAGES</option>
+                    <option value="count">COUNT</option>
+                </select>
+            </div>
+            <div>
+                <button type="button" class="input_btn_sort" id="btn_sort">Sort</button>
+            </div>
         </div>
-        <div>
-            <button type="button" class="input_btn_sort" id="btn_sort">Sort</button>
+        <div class="input_search">
+            <div>
+                <label>Search:</label>
+                <input type="text" id="txt_search" class="input_txt_search">
+            </div>
+            <div>
+                <button type="button" class="input_btn_search" id="btn_search">Search</button>
+            </div>
         </div>
     </div>
-    <div class="input_search">
-        <div>
-            <label>Search:</label>
-            <input type="text" id="txt_search" class="input_txt_search">
-        </div>
-        <div>
-            <button type="button" class="input_btn_search" id="btn_search">Search</button>
+    <div class="table_books" id="table"></div>
+    <div class="modul_cont" id = "modul_wind">
+        <div class="modul_box">
+            <h2 id = "modul_head">ADD NEW BOOK</h2>
+            <div class="modul_input">
+                <div class = "modul_item">
+                    <label>ID:</label>
+                    <input type="text" id="inp_id">
+                    <label id="lab_N">NAME:</label>
+                    <input type="text" id="inp_name">
+                </div>
+                <div class = "modul_item">
+                    <label>AUTHOR:</label>
+                    <input type="text" id="inp_auth">
+                    <label id="lab_N">YEAR:</label>
+                    <input type="text" id="inp_year">
+                </div>
+                <div class = "modul_item"></div>
+                    <label>PUBLISHER:</label>
+                    <input type="text" id="inp_publ">
+                    <label id="lab_N">PAGES:</label>
+                    <input type="text" id="inp_pag">
+                    <label id="lab_N">COUNT:</label>
+                    <input type="text" id="inp_cnt">
+                </div>
+            </div>
+            <div class="modul_button">
+                <div>
+                    <input type="submit" id="sub_ok" value="OK">
+                </div>
+                <div>
+                    <input type="submit" id="sub_cancel" value="CANCEL">
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<div class="table_books" id = "table"></div>
 </body>
+
 </html>
