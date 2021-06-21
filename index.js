@@ -58,7 +58,7 @@ window.onload = function () {
                 }
             });
         };
-    }
+    };
 
     trackingClickingEditDel();
 
@@ -78,7 +78,7 @@ window.onload = function () {
         let divTbl = document.getElementById('table');
         if (divTbl.value == null)
             createPrintTable(books);
-    }
+    };
 
     //Функция проверки ID
     function checkId() {
@@ -96,7 +96,7 @@ window.onload = function () {
             }
             return (count === 0 ? false : true);
         }
-    }
+    };
 
     //Функция очистки строк ввода
     function clearModulInput() {
@@ -140,7 +140,7 @@ window.onload = function () {
         localStorage.clear();
         localStorage.setItem('books', JSON.stringify(arr));
         return arr;
-    }
+    };
 
     //Функция редактирования данных книги
     function editBook(name) {
@@ -183,7 +183,7 @@ window.onload = function () {
             clearModulInput();
             window.location.reload();
         });
-    }
+    };
 
     //Функция поиска
     function searchBook(name) {
