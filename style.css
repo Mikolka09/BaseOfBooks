@@ -158,10 +158,12 @@
     bottom: 0;
     left: 0;
     right: 0;
-    transition: all 0.2s linear;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
     border: 3px solid gray;
-    background-color: honeydew;
+    background-color: lightgoldenrodyellow;
     display: none;
+    z-index: 250;
+    pointer-events: auto;
 }
 
 .modul_box {
@@ -169,55 +171,81 @@
     width: 950px;
     height: 470px;
     left: 25px;
-    font-size:20pt;
+    font-size: 20pt;
 }
+
 .modul_box>h2 {
     font-size: 28pt;
     text-align: center;
-    text-decoration:underline;
+    text-decoration: underline;
 }
 
-.modul_input input{
-    height:45px;
-    font-size:18pt;
+.modul_input input:invalid {
+    box-shadow: 0 0 5px 1px red;
 }
 
-#inp_id{
-    width:100px;
+.modul_input input:valid {
+    box-shadow: none;
 }
 
-#inp_name{
-    width:649px;
+.modul_input input {
+    height: 45px;
+    font-size: 18pt;
 }
 
-#inp_public{
-    width:400px;
+#inp_id {
+    width: 100px;
 }
 
-#inp_year, #inp_pag, #inp_cnt{
-    width:100px;
+#inp_name {
+    width: 649px;
 }
 
-.modul_button{
-    position:relative;
+#inp_public {
+    width: 400px;
+}
+
+#inp_year,
+#inp_pag,
+#inp_cnt {
+    width: 100px;
+}
+
+.modul_button {
+    position: relative;
     display: flex;
     text-align: center;
     bottom: 130px;
     justify-content: space-evenly;
 }
 
-#lab_N{
-    margin-left: 30px;;
+#lab_N {
+    margin-left: 30px;
+    ;
 }
 
-.modul_item{
+.modul_item {
     margin-bottom: 40px;
 }
 
-#sub_ok, #sub_cancel{
+#sub_ok,
+#sub_cancel {
     width: 150px;
     height: 55px;
     font-size: 22pt;
     font-weight: 500;
 }
 
+.modul_back {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    z-index: 200;
+    overflow: hidden;
+    transition: opacity 200ms ease-in;
+    pointer-events: auto;
+}

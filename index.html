@@ -11,84 +11,86 @@
 </head>
 
 <body class="body_hide">
-    <header>
-        <a class="header_logo" href=" index.html">LIBRARY</a>
-        <nav class="header_nav">
-            <a class="header_nav_link" id="nav_1" href="#">Books</a>
-            <a class="header_nav_link" id="nav_2" href="#">Visitors</a>
-            <a class="header_nav_link" id="nav_3" href="#">Cards</a>
-            <a class="header_nav_link" id="nav_4" href="#">Statistics</a>
-        </nav>
-    </header>
-    <div class="container_box">
-        <div class="container_text">All Books:</div>
-        <div>
-            <button type="button" class="container_btn" id="btn_new">New Book</button>
+    <div class="modul_back" id="div_back">
+        <header>
+            <a class="header_logo" href=" index.html">LIBRARY</a>
+            <nav class="header_nav">
+                <a class="header_nav_link" id="nav_1" href="#">Books</a>
+                <a class="header_nav_link" id="nav_2" href="#">Visitors</a>
+                <a class="header_nav_link" id="nav_3" href="#">Cards</a>
+                <a class="header_nav_link" id="nav_4" href="#">Statistics</a>
+            </nav>
+        </header>
+        <div class="container_box">
+            <div class="container_text">All Books:</div>
+            <div>
+                <button type="button" class="container_btn" id="btn_new">New Book</button>
+            </div>
         </div>
+        <div class="input_box">
+            <div class="input_sort">
+                <div>
+                    <label>Sort by:</label>
+                    <select name="sort" id="sort">
+                        <option value="id" selected>ID</option>
+                        <option value="name">NAME</option>
+                        <option value="author">AUTHOR</option>
+                        <option value="year">YEAR</option>
+                        <option value="publisher">PUBLISHER</option>
+                        <option value="pages">PAGES</option>
+                        <option value="count">COUNT</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="button" class="input_btn_sort" id="btn_sort">Sort</button>
+                </div>
+            </div>
+            <div class="input_search">
+                <div>
+                    <label>Search:</label>
+                    <input type="text" id="txt_search" class="input_txt_search">
+                </div>
+                <div>
+                    <button type="button" class="input_btn_search" id="btn_search">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="table_books" id="table"></div>
     </div>
-    <div class="input_box">
-        <div class="input_sort">
-            <div>
-                <label>Sort by:</label>
-                <select name="sort" id="sort">
-                    <option value="id" selected>ID</option>
-                    <option value="name">NAME</option>
-                    <option value="author">AUTHOR</option>
-                    <option value="year">YEAR</option>
-                    <option value="publisher">PUBLISHER</option>
-                    <option value="pages">PAGES</option>
-                    <option value="count">COUNT</option>
-                </select>
-            </div>
-            <div>
-                <button type="button" class="input_btn_sort" id="btn_sort">Sort</button>
-            </div>
-        </div>
-        <div class="input_search">
-            <div>
-                <label>Search:</label>
-                <input type="text" id="txt_search" class="input_txt_search">
-            </div>
-            <div>
-                <button type="button" class="input_btn_search" id="btn_search">Search</button>
-            </div>
-        </div>
-    </div>
-    <div class="table_books" id="table"></div>
-    <div class="modul_cont" id = "modul_wind">
+    <div class="modul_cont" id="modul_wind">
         <div class="modul_box">
-            <h2 id = "modul_head">ADD NEW BOOK</h2>
+            <h2 id="modul_head">ADD NEW BOOK</h2>
             <div class="modul_input">
-                <div class = "modul_item">
+                <div class="modul_item">
                     <label>ID:</label>
-                    <input type="text" id="inp_id" placeholder="100">
+                    <input type="text" id="inp_id" placeholder="100" required pattern = "^\d+$">
                     <label id="lab_N">NAME:</label>
-                    <input type="text" id="inp_name" placeholder="Name Book">
+                    <input type="text" id="inp_name" placeholder="Name Book" required pattern = '^[а-яА-Яa-zA-Z0-9 _+#."]+$'>
                 </div>
-                <div class = "modul_item">
+                <div class="modul_item">
                     <label>AUTHOR:</label>
-                    <input type="text" id="inp_auth" placeholder="Name Surname">
+                    <input type="text" id="inp_auth" placeholder="Name Surname" required pattern = "^[а-яА-яa-zA-Z ]+$">
                     <label id="lab_N">YEAR:</label>
-                    <input type="text" id="inp_year" placeholder="2002">
+                    <input type="text" id="inp_year" placeholder="2002" maxlength="4" required pattern = "^\d+$">
                 </div>
-                <div class = "modul_item"></div>
-                    <label>PUBLISHER:</label>
-                    <input type="text" id="inp_publ" placeholder = "Company Name">
-                    <label id="lab_N">PAGES:</label>
-                    <input type="text" id="inp_pag" placeholder = "111">
-                    <label id="lab_N">COUNT:</label>
-                    <input type="text" id="inp_cnt" placeholder = "22">
-                </div>
-            </div>
-            <div class="modul_button">
-                <div>
-                    <input type="submit" id="sub_ok" value="OK">
-                </div>
-                <div>
-                    <input type="submit" id="sub_cancel" value="CANCEL">
-                </div>
+                <div class="modul_item"></div>
+                <label>PUBLISHER:</label>
+                <input type="text" id="inp_publ" placeholder="Company Name" required pattern = '^[а-яА-Яa-zA-Z0-9 _"]+$'>
+                <label id="lab_N">PAGES:</label>
+                <input type="text" id="inp_pag" placeholder="111" required pattern = "^\d+$">
+                <label id="lab_N">COUNT:</label>
+                <input type="text" id="inp_cnt" placeholder="22" required pattern = "^\d+$">
             </div>
         </div>
+        <div class="modul_button">
+            <div>
+                <input type="submit" id="sub_ok" value="OK">
+            </div>
+            <div>
+                <input type="submit" id="sub_cancel" value="CANCEL">
+            </div>
+        </div>
+    </div>
     </div>
 </body>
 

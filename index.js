@@ -1,5 +1,7 @@
 window.onload = function () {
     let books = JSON.parse(localStorage.getItem('books'));
+    let res = true;
+
     //Стара создания таблицы
     start();
 
@@ -7,25 +9,32 @@ window.onload = function () {
     let newBook = document.getElementById('btn_new');
     newBook.addEventListener('click', function () {
         let modul = document.getElementById('modul_wind')
+        let modulBack = document.getElementById('div_back')
+        modulBack.style.opacity = 0.4;
+        modulBack.style.pointerEvents = 'none';
         modul.style.display = 'block';
         let subOK = document.getElementById('sub_ok');
         let subCan = document.getElementById('sub_cancel');
         subOK.addEventListener('click', function () {
-            if (checkId()) alert('"Id" entered incorrectly! "id" must be a number or there is such an "id"! Try again!');
+            if (checkId()) alert('"Id" введен не некорректно! "id" должно быть только из цифр или уже есть такое "id"! Попробуйте еще раз!');
             else {
                 modul.style.display = 'none';
+                modulBack.style.opacity = 1;
+                modulBack.style.pointerEvents = 'auto';
                 let arrTest = books;
                 localStorage.clear();
                 arrTest.push(createNewBook());
                 localStorage.setItem('books', JSON.stringify(arrTest));
                 clearTable();
                 createPrintTable(arrTest);
-                alert(`Your Book with is added!`);
+                alert(`Ваша книга добавлена в базу!`);
                 window.location.reload();
             }
         });
         subCan.addEventListener('click', function () {
             modul.style.display = 'none';
+            modulBack.style.opacity = 1;
+            modulBack.style.pointerEvents = 'auto';
             clearModulInput();
             documetn.location.reload();
         });
@@ -39,12 +48,12 @@ window.onload = function () {
             it.addEventListener('click', function (e) {
                 let idIm = e.target.id;
                 let arr = idIm.split('_');
-                if (arr[1] === 'del' && confirm("Do you want to delete this book?")) {
+                if (arr[1] === 'del' && confirm("Вы хотите удалить эту книгу?")) {
                     clearTable();
                     createPrintTable(deleteBook(arr[0]));
-                    alert(`Book with ID - ${arr[0]} deleted!`);
+                    alert(`Книга с ID - ${arr[0]} удалена!`);
                     window.location.reload();
-                } else {
+                } else if (arr[1] === 'edit') {
                     editBook(arr[0]);
                 }
             });
@@ -146,22 +155,31 @@ window.onload = function () {
         document.getElementById('inp_cnt').value = arr.count;
         document.getElementById('modul_head').innerHTML = 'EDIT BOOK';
         let modul = document.getElementById('modul_wind');
+        let modulBack = document.getElementById('div_back')
+        modulBack.style.opacity = 0.4;
+        modulBack.style.pointerEvents = 'none';
         let subOK = document.getElementById('sub_ok');
         let subCan = document.getElementById('sub_cancel');
         modul.style.display = 'block';
         subOK.addEventListener('click', function () {
             modul.style.display = 'none';
+            let modulBack = document.getElementById('div_back')
+            modulBack.style.opacity = 1;
+            modulBack.style.pointerEvents = 'auto';
             let arrTest = deleteBook(name);
             localStorage.clear();
             arrTest.push(createNewBook());
+            arrTest.sort((a, b) => a.id > b.id ? 1 : -1);
             localStorage.setItem('books', JSON.stringify(arrTest));
             clearTable();
             createPrintTable(arrTest);
-            alert(`Book with ID - ${name} edited!`);
+            alert(`Книга с ID - ${name} отредактированая!`);
             window.location.reload();
         });
         subCan.addEventListener('click', function () {
             modul.style.display = 'none';
+            modulBack.style.opacity = 1;
+            modulBack.style.pointerEvents = 'auto';
             clearModulInput();
             window.location.reload();
         });
@@ -182,7 +200,11 @@ window.onload = function () {
                 arrNew.push(it);
             }
         }
-        return arrNew;
+        if (arrNew.length === 0) {
+            alert('По вашиму запросу книг не найдено! Измените запрос и попробуйте еще раз!');
+            document.getElementById('txt_search').value = '';
+            window.location.reload();
+        } else return arrNew;
     };
 
     //Сортировка таблицы
@@ -198,7 +220,13 @@ window.onload = function () {
     //Функция сортировки
     function sortTable(name) {
         let arrT = books;
-        arrT.sort((a, b) => a[name] > b[name] ? 1 : -1);
+        if (res) {
+            arrT.sort((a, b) => a[name] > b[name] ? 1 : -1);
+            res = false;
+        } else {
+            arrT.sort((a, b) => a[name] > b[name] ? -1 : 1);
+            res = true;
+        }
         return arrT;
     };
 
