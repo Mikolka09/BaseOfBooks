@@ -1,7 +1,7 @@
 window.onload = function () {
     let books = JSON.parse(localStorage.getItem('books'));
-
-    createPrintTable(books);
+    //Стара создания таблицы
+    start();
 
     //Добавление новой книги
     let newBook = document.getElementById('btn_new');
@@ -11,40 +11,47 @@ window.onload = function () {
         let subOK = document.getElementById('sub_ok');
         let subCan = document.getElementById('sub_cancel');
         subOK.addEventListener('click', function () {
-            modul.style.display = 'none';
-            let arrTest = books;
-            localStorage.clear();
-            arrTest.push(createNewBook());
-            localStorage.setItem('books', JSON.stringify(arrTest));
-            clearTable();
-            createPrintTable(arrTest);
-            window.location.reload();
+            if (checkId()) alert('"Id" entered incorrectly! "id" must be a number or there is such an "id"! Try again!');
+            else {
+                modul.style.display = 'none';
+                let arrTest = books;
+                localStorage.clear();
+                arrTest.push(createNewBook());
+                localStorage.setItem('books', JSON.stringify(arrTest));
+                clearTable();
+                createPrintTable(arrTest);
+                alert(`Your Book with is added!`);
+                window.location.reload();
+            }
         });
         subCan.addEventListener('click', function () {
             modul.style.display = 'none';
             clearModulInput();
-            window.location.reload();
+            documetn.location.reload();
         });
-        
+
     });
 
-
-
     //Удаление или редактирование книги
-    let arrImg = document.getElementsByClassName('table_img');
-    for (const it of arrImg) {
-        it.addEventListener('click', function (e) {
-            let idIm = e.target.id;
-            let arr = idIm.split('_');
-            if (arr[1] === 'del') {
-                clearTable();
-                createPrintTable(deleteBook(arr[0]));
-                window.location.reload();
-            } else {
-                editBook(arr[0]);
-            }
-        });
-    };
+    function trackingClickingEditDel() {
+        let arrImg = document.getElementsByClassName('table_img');
+        for (const it of arrImg) {
+            it.addEventListener('click', function (e) {
+                let idIm = e.target.id;
+                let arr = idIm.split('_');
+                if (arr[1] === 'del' && confirm("Do you want to delete this book?")) {
+                    clearTable();
+                    createPrintTable(deleteBook(arr[0]));
+                    alert(`Book with ID - ${arr[0]} deleted!`);
+                    window.location.reload();
+                } else {
+                    editBook(arr[0]);
+                }
+            });
+        };
+    }
+
+    trackingClickingEditDel();
 
     //Поиск книги
     let btnSearch = document.getElementById('btn_search');
@@ -54,7 +61,33 @@ window.onload = function () {
         clearTable();
         createPrintTable(searchBook(name));
         searchName.value = '';
+        trackingClickingEditDel();
     });
+
+    //Функция старта скрипта
+    function start() {
+        let divTbl = document.getElementById('table');
+        if (divTbl.value == null)
+            createPrintTable(books);
+    }
+
+    //Функция проверки ID
+    function checkId() {
+        let arr = books;
+        let newId = document.getElementById('inp_id');
+        let nameId = newId.value;
+        let reg = new RegExp('^\\d+$');
+        if (!reg.test(nameId)) return true;
+        else {
+            let count = 0;
+            for (const it of arr) {
+                if (`${it.id}`.indexOf(nameId) != -1) {
+                    count++;
+                }
+            }
+            return (count === 0 ? false : true);
+        }
+    }
 
     //Функция очистки строк ввода
     function clearModulInput() {
@@ -65,7 +98,7 @@ window.onload = function () {
         document.getElementById('inp_publ').value = '';
         document.getElementById('inp_pag').value = '';
         document.getElementById('inp_cnt').value = '';
-    }
+    };
 
     //Функция создания новой книги
     function createNewBook() {
@@ -96,14 +129,14 @@ window.onload = function () {
         let arrNew = books;
         let arr = arrNew.filter(x => x.id != name);
         localStorage.clear();
-        localStorage.setItem('books',JSON.stringify(arr));
+        localStorage.setItem('books', JSON.stringify(arr));
         return arr;
     }
 
     //Функция редактирования данных книги
     function editBook(name) {
         let arrNew = books;
-        let arr = arrNew.find(x=>x.id == name);
+        let arr = arrNew.find(x => x.id == name);
         document.getElementById('inp_id').value = arr.id;
         document.getElementById('inp_name').value = arr.name;
         document.getElementById('inp_auth').value = arr.author;
@@ -111,7 +144,7 @@ window.onload = function () {
         document.getElementById('inp_publ').value = arr.publisher;
         document.getElementById('inp_pag').value = arr.pages;
         document.getElementById('inp_cnt').value = arr.count;
-        document.getElementById('modul_head').innerHTML ='EDIT BOOK';
+        document.getElementById('modul_head').innerHTML = 'EDIT BOOK';
         let modul = document.getElementById('modul_wind');
         let subOK = document.getElementById('sub_ok');
         let subCan = document.getElementById('sub_cancel');
@@ -124,6 +157,7 @@ window.onload = function () {
             localStorage.setItem('books', JSON.stringify(arrTest));
             clearTable();
             createPrintTable(arrTest);
+            alert(`Book with ID - ${name} edited!`);
             window.location.reload();
         });
         subCan.addEventListener('click', function () {
@@ -158,6 +192,7 @@ window.onload = function () {
         let val = sortName.options[sortName.selectedIndex].value;
         clearTable();
         createPrintTable(sortTable(val));
+        trackingClickingEditDel();
     });
 
     //Функция сортировки

@@ -183,8 +183,8 @@ function searchBook(name) {
     return arrNew;
 }
 
-let arr = searchBook('герб');
+//let arr = searchBook('герб');
 
-for (const it of arr) {
-    console.log(it);
-}
+// for (const it of arr) {
+//     console.log(it);
+// }
